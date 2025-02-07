@@ -138,7 +138,25 @@ function AppRoutes() {
 export default AppRoutes
 ```
 
-## install Sweet alert
+# Step 1 install Sweet alert
+for popup box
 ```bash
 npm install sweetalert2
 ```
+# Step 2 React Hook From
+for flexible and extensible forms
+```bash
+npm install react-hook-form
+```
+# Step 3 React Hook From
+for icon 
+```bash
+npm install lucide-react
+```
+# Step 4 Validate with Zod
+for validator https://github.com/react-hook-form/resolvers
+```bash
+npm install @hookform/resolvers
+npm i zod
+```
+
