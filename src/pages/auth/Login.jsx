@@ -12,9 +12,15 @@ import { useNavigate } from "react-router";
 import { loginSchema, registerSchema } from "../../utils/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { actionLogin, actionRegister } from "../../api/auth";
+import useAuthStore from "../../store/auth-store";
 
 function Login() {
-  // Javascript
+
+  // Zustand
+  const actionLoginWithZustand = useAuthStore((state)=>state.actionLoginWithZustand)
+  // console.log(test.user)
+
+
   const navigate = useNavigate()
 
   const { register, handleSubmit, formState, reset } = useForm({
@@ -34,20 +40,18 @@ function Login() {
   };
 
   const hdlSubmit = async (value) => {
-    // Delay
-    // await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    try {
-      const res = await actionLogin(value);
-      const role = res.data.payload.role
-      roleRedirect(role)
-      // reset()
-      createAlert("success", "Login Success");
-    } catch (error) {
-      createAlert("info", error.response?.data?.message);
-      console.log(error.response?.data?.message);
+    const res = await actionLoginWithZustand(value); // Call login action
+    console.log("Login response:", res); // Log response to debug
+  
+    if (res.success) {
+      roleRedirect(res.role); // Redirect based on role
+      reset();
+      createAlert("Success", "Welcome back!");
+    } else {
+      createAlert("Error", res.error || "Something went wrong"); // Show error message
     }
   };
+  
 
 
 

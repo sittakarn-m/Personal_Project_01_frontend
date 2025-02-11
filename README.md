@@ -6,6 +6,8 @@ create folder client
 npm create vite .
 select > react > javascript
 npm install
+
+npm run dev
 ```
 
 ## Step 2 Install tailwind
@@ -161,3 +163,7 @@ npm i zod
 ```
 
 import { useNavigate } from "react-router";
+
+```bash
+npm install zustand
+```
